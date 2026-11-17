@@ -1,5 +1,9 @@
 name: Link Checker
 
+# Vendored GSAP skills (byte-pinned in vendor/vendor-lock.json) link to four gsap.com pages
+# that return 404 upstream. The files cannot be edited here; drop the gsap.com exclude once
+# greensock/gsap-skills fixes them and scripts/sync-vendor-skills.py pulls the fix.
+
 on:
   pull_request:
   schedule:
@@ -28,6 +32,7 @@ jobs:
             --max-retries=3
             --exclude https://github.com/frankxai/awesome-jarvis
             --exclude 'releases/(download|tag)/skills-latest'
+            --exclude 'gsap\.com/docs/v3/(Plugins/ScrollTrigger/static\.(batch|scrollerProxy)|GSAP/UtilityMethods/(distribute|splitColor))/'
             './**/*.md'
           fail: true
           jobSummary: true
@@ -50,6 +55,7 @@ jobs:
             --max-retries=3
             --exclude https://github.com/frankxai/awesome-jarvis
             --exclude 'releases/(download|tag)/skills-latest'
+            --exclude 'gsap\.com/docs/v3/(Plugins/ScrollTrigger/static\.(batch|scrollerProxy)|GSAP/UtilityMethods/(distribute|splitColor))/'
             './**/*.md'
           fail: false
           jobSummary: true
