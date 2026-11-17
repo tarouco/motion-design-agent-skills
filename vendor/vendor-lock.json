@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "policy": "Only MIT/Apache-2.0 skills with an explicit license file are vendored, so the single motion-design-agent-skills plugin works on surfaces that cannot run an installer (claude.ai, Cowork). Each vendored skill folder in skills/ carries the upstream LICENSE. Refresh monthly with scripts/sync-vendor-skills.py; CI rejects drift from the hashes below.",
+  "sources": [
+    {
+      "repo": "greensock/gsap-skills",
+      "commit": "aed9cfd3277740755f6bfc1155c7aa645403b760",
+      "license": "MIT",
+      "licenseFile": "LICENSE",
+      "skillsDir": "skills",
+      "skills": [
+        "gsap-core",
+        "gsap-frameworks",
+        "gsap-performance",
+        "gsap-plugins",
+        "gsap-react",
+        "gsap-scrolltrigger",
+        "gsap-timeline",
+        "gsap-utils"
+      ],
+      "purpose": "Official GSAP API knowledge. motion-director and site-motion-excellence-director choose GSAP for timelines, ScrollTrigger, SVG and authored choreography; these skills carry the current API so the implementation step does not rely on memory."
+    },
+    {
+      "repo": "LottieFiles/motion-design-skill",
+      "commit": "f9a8a041b85185ee4881b3471d3415e939aac772",
+      "license": "MIT",
+      "licenseFile": "LICENSE",
+      "skillsDir": "skills",
+      "skills": [
+        "motion-design"
+      ],
+      "purpose": "Motion principles, easing tables and choreography patterns for Lottie/dotLottie and general UI motion; the reference library behind motion-director's timing and personality decisions."
+    }
+  ],
+  "external": [
+    {
+      "repo": "remotion-dev/skills",
+      "commit": "3e20ac75161bc34468845df714701cc9bf6075f4",
+      "skills": [
+        "remotion-best-practices"
+      ],
+      "reason": "Not vendored: the upstream repository ships no license file (Remotion uses its own license). Install it from the official source inside a Remotion project with `npx remotion skills add`, or with `npx skills add remotion-dev/skills`. remotion-video-agent works without it but should load it when present."
+    }
+  ],
+  "files": {
+    "gsap-core/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-core/SKILL.md": "3887b47e050ab5afbe2a9a820f23d39fa02ab785e06a343be44c6f91d84d12b3",
+    "gsap-frameworks/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-frameworks/SKILL.md": "842d9d3659ec3ddc8abbdc524708f8facf81f468ac25d0577f48c759c4fa31e6",
+    "gsap-performance/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-performance/SKILL.md": "cb5408d6fba707aabcbfe3320317a14c1f8fca6070074e5261047930f50d441e",
+    "gsap-plugins/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-plugins/SKILL.md": "5838b856c74c07fbc9fa99b6dfd1eee34ea554c3e530c30e0d58014b707d70a4",
+    "gsap-react/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-react/SKILL.md": "88e2a5312b45e8cc7b3c496637ff5bc9af2ae9c925b555c8b235b34cbc989d74",
+    "gsap-scrolltrigger/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-scrolltrigger/SKILL.md": "9351b6666a4749c0740406ea363aaccb99a087ff45cc5e8b99a0f367facf3ef4",
+    "gsap-timeline/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-timeline/SKILL.md": "1a8b0f39cc4be3ed3d834b89672e4ae2f151b901dc3450bebf10bbc45379fe02",
+    "gsap-utils/LICENSE": "51b04b06556662dd817e8f4aa6d06bc7139dc73739e1319a7233cfde3e147b90",
+    "gsap-utils/SKILL.md": "1927bcc4ea95b38203404ad5ea1d060b15c4a886c65ae53e885ff1793aabe0ba",
+    "motion-design/LICENSE": "9fc2e8685daa09e28d54b6afa8a38f168417c5735a3cd676c80c159785e93a80",
+    "motion-design/SKILL.md": "8729ecbc7e5736c1295baaa8ba0384bb4b1aac9cf91b83fcdc64d9548a57bb19",
+    "motion-design/director/choreography.md": "c81257b56160b9b2f3d99f78d4b8172b425c22d9ca73be06d3ffaa7305a34deb",
+    "motion-design/director/context-adaptation.md": "550e96a1c8c369513304ee74c0e89b63168bc7287b83e9ed5685bb65609986b3",
+    "motion-design/director/core-philosophy.md": "7aaa8a065d9940dad0198cf9cfe74979008495e6daf87f46f9022fff1b6a85e9",
+    "motion-design/director/decision-framework.md": "4b6758da6742475c928b4f8be8c662f4b5ed0964468ba7760df8f7635c779358",
+    "motion-design/director/disney-principles.md": "39024711890c2684a3434659a4d95a52ca8231facea74e87e79503054aaca671",
+    "motion-design/director/emotion-mapping.md": "a279e55a3f52a9f5830d38dc54679c652d9a5c26f0dd360700c16e23766d468b",
+    "motion-design/director/motion-personality.md": "66a3623b6654869482c02157ca791034a614ca6dcb02a8112049e28d292ee18a",
+    "motion-design/director/narrative-structure.md": "d49db19db40425dec027c3012d553b50fd74ed79e27ace9dec1226796469061b",
+    "motion-design/patterns/ambient-continuous.md": "f9cfa00d3325dceadcb9ffd77dcb5dcbc51d34121f3b1f162979939006056773",
+    "motion-design/patterns/entrance-exit.md": "70b3fc3a8d58ebe58e293e643b78fd13750d9c8ef1c8fc5fe85e52f7378cbd91",
+    "motion-design/patterns/multi-element.md": "46c8da91843c593deb763a4a7fa32849bdaeb7a7ecd4d559e3b21bcc976f2c46",
+    "motion-design/patterns/state-feedback.md": "dac86388c2d8fcdfc2f194b4f8877caedcdc010df9ce29d27dfc99d08cf8c60e",
+    "motion-design/reference/property-selection.md": "053d830795fc824fed27618fbd18084207af6aeed55b73c0a6e1d5665de894ae",
+    "motion-design/reference/quality-checklist.md": "c11bf193b700d9c9ebc5d871f1d5f193bccc441c4eccc0509b53a40d6e8dc558",
+    "motion-design/reference/timing-easing-tables.md": "e478f3b99c4cac3f96eca008e20f8808d4cfae165f5799f260092baf9b6ebcff",
+    "motion-design/reference/troubleshooting.md": "69e5aaeee108231d51187143ae3fce4db7a42936f10682908ca9462a008a047a"
+  }
+}

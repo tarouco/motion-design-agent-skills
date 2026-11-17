@@ -1,9 +1,22 @@
 ---
 name: remotion-video-agent
-description: Use when creating or editing Remotion videos, programmatic explainers, motion graphics, MP4 renders, GIF renders, social cutdowns, or React-authored video templates.
+description: Use when creating or editing Remotion videos, programmatic explainers, motion graphics, MP4 renders, GIF renders, social cutdowns, captions, or React-authored and data-driven video templates, and when finishing generated footage with exact text, overlays, CTA and aspect-ratio variants. Not for AI-generated footage itself (use generative-media-director) or in-page web animation (use motion-director).
 ---
 
 # Remotion Video Agent
+
+## When to use
+
+- Building or editing a Remotion composition: explainers, product demos, social cutdowns, captions, templated or data-driven video.
+- Finishing generated or captured footage with exact typography, logo lockups, CTA and variants.
+- Rendering MP4 (delivery) or GIF (previews only).
+
+## When not to use
+
+- Generating footage or stills with AI providers: use `generative-media-director` first, then return here to finish.
+- Animating a live web page: use `motion-director` or `site-motion-excellence-director`.
+
+Load the official Remotion skills (`remotion-best-practices`, `/remotion-docs`) when installed; they are installed separately, see the orchestrator's dependency notes.
 
 ## Workflow
 

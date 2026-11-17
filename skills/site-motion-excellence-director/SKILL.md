@@ -1,11 +1,23 @@
 ---
 name: site-motion-excellence-director
-description: Use when planning, auditing, specifying, implementing, or improving premium website/app motion across FrankX, Arcanea, Starlight, or Vercel/Next.js sites. Use for motion design systems, site choreography, scroll motion, generated media integration, runtime selection, reduced-motion planning, visual QA, and turning rough motion ideas into implementation-ready specs.
+description: Use when planning, auditing, specifying, implementing, or improving premium website/app motion on any stack (for example Next.js on Vercel). Use for motion design systems, site choreography, hero and scroll motion, generated media integration, runtime selection, reduced-motion planning, visual QA, and turning rough motion ideas into implementation-ready specs scored by the site motion excellence gate. Delegates component tokens to motion-director and runtime probes to web-motion-auditor.
 ---
 
 # Site Motion Excellence Director
 
 Use this skill before adding substantial motion to a website or app.
+
+## When to use
+
+- A site or app needs a motion system, a signature hero moment, a scroll narrative or a premium launch pass.
+- A rough motion idea must become an implementation-ready spec before anyone writes code.
+- A shipped site motion pass needs the excellence gate score.
+
+## When not to use
+
+- A single component or micro-interaction: use `motion-director`.
+- Only reviewing existing motion: use `web-motion-auditor` (this skill scores the gate after that review).
+- Video deliverables: use `remotion-video-agent` or `generative-media-director`.
 
 ## Workflow
 

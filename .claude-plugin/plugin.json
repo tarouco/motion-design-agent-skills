@@ -1,20 +1,27 @@
 {
-  "name": "motion-design-studio",
-  "version": "1.1.0",
-  "description": "Five skills: generative-media-director, motion-director, remotion-video-agent, site-motion-excellence-director, web-motion-auditor.",
+  "name": "motion-design-agent-skills",
+  "displayName": "Motion Design Agent Skills",
+  "version": "2.0.0",
+  "description": "One plugin for motion design work: an orchestrator that routes each request, five workflow skills (motion-director, site-motion-excellence-director, web-motion-auditor, remotion-video-agent, generative-media-director) and the official GSAP and LottieFiles motion references, with reduced-motion, provenance and visual-QA gates.",
+  "icon": "./assets/icon.png",
   "author": {
-    "name": "FrankX",
-    "url": "https://github.com/frankxai"
+    "name": "tarouco",
+    "url": "https://github.com/tarouco"
   },
-  "homepage": "https://github.com/frankxai/awesome-motion-design-agent-skills",
-  "repository": "https://github.com/frankxai/awesome-motion-design-agent-skills",
+  "homepage": "https://github.com/tarouco/motion-design-agent-skills",
+  "repository": "https://github.com/tarouco/motion-design-agent-skills",
   "license": "CC0-1.0",
   "keywords": [
     "motion",
     "animation",
+    "motion-design",
     "remotion",
     "gsap",
+    "lottie",
     "video",
-    "design-qa"
+    "gif",
+    "generative-media",
+    "design-qa",
+    "reduced-motion"
   ]
 }

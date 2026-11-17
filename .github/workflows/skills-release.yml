@@ -1,11 +1,12 @@
 name: Skills Release
 
-# Publishes one .zip per skill to the rolling `skills-latest` release so
-# README download links stay stable for Claude.ai / Desktop / Cowork uploads.
+# Publishes one .zip per skill plus the motion-design-agent-skills plugin bundles
+# (Claude.ai/Cowork upload and the universal Codex/Antigravity/Hermes bundle) to the
+# rolling `skills-latest` release so README download links stay stable.
 on:
   push:
     branches: [main]
-    paths: ["skills/**", ".github/workflows/skills-release.yml", "scripts/verify-skill-packages.py", "scripts/release-policy.py", "tests/**", "rubrics/motion-quality-rubric.md", "rubrics/site-motion-excellence-gate.md", "templates/site-motion/SITE_MOTION_SPEC.md"]
+    paths: ["skills/**", ".github/workflows/skills-release.yml", "scripts/verify-skill-packages.py", "scripts/release-policy.py", "scripts/build-plugin.py", "scripts/sync-vendor-skills.py", "tests/**", "rubrics/motion-quality-rubric.md", "rubrics/site-motion-excellence-gate.md", "templates/site-motion/SITE_MOTION_SPEC.md", ".claude-plugin/**", ".antigravity-plugin/**", ".agents/plugins/**", "plugin.json", "hooks/**", "rules/**", "memory/**", "vendor/**", "install.sh", "PLUGIN.md", "docs/plugin-guide.pt-BR.md", "THIRD_PARTY_NOTICES.md", "skills-lock.json", "assets/icon.png", "LICENSE"]
   workflow_dispatch:
     inputs:
       publish:
@@ -26,9 +27,11 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v7
-      - name: Verify source payloads and regression cases
+      - name: Verify source payloads, vendored skills, manifests and regression cases
         run: |
           python3 scripts/verify-skill-packages.py
+          python3 scripts/sync-vendor-skills.py --check
+          python3 scripts/verify-repo.py
           python3 -m unittest discover -s tests -p 'test_*.py' -v
       - name: Package skills
         run: |
@@ -57,6 +60,8 @@ jobs:
           }
           (root / "dist/release-provenance.json").write_text(json.dumps(record, indent=2) + "\n")
           PY
+      - name: Build plugin bundles
+        run: python3 scripts/build-plugin.py --out dist/plugin
       - uses: actions/upload-artifact@v7
         with:
           name: skills-${{ github.sha }}
@@ -93,8 +98,9 @@ jobs:
           GH_REPO: ${{ github.repository }}
         run: |
           cd dist && sha256sum --check SHA256SUMS && cd ..
-          notes="Verified rolling skill packages from ${GITHUB_SHA}. Source: https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}. SHA256SUMS and release-provenance.json identify the actual archive bytes and payload files. Upload one skill ZIP in Claude's Skills settings, or install from source: npx skills add ${GITHUB_REPOSITORY}"
+          cd dist/plugin && sha256sum --check PLUGIN-SHA256SUMS && cd ../..
+          notes="Verified rolling packages from ${GITHUB_SHA}. Source: https://github.com/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}. Plugin: upload motion-design-agent-skills.zip in claude.ai (Customize > Plugins > Upload plugin); motion-design-agent-skills-universal.zip carries every manifest plus install.sh for Claude Code, Codex, Antigravity and Hermes. Single skills: one ZIP per skill for Claude's Skills settings. SHA256SUMS, PLUGIN-SHA256SUMS and release-provenance.json identify the actual bytes. From source: npx skills add ${GITHUB_REPOSITORY}"
           gh release view skills-latest >/dev/null 2>&1 \
             || gh release create skills-latest --title "Skills (rolling)" --notes "$notes" --latest=false
           gh release edit skills-latest --notes "$notes"
-          gh release upload skills-latest dist/*.zip dist/SHA256SUMS dist/release-provenance.json --clobber
+          gh release upload skills-latest dist/*.zip dist/SHA256SUMS dist/release-provenance.json dist/plugin/* --clobber

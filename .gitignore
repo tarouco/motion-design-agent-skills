@@ -1,7 +1,8 @@
 node_modules/
 dist/
 out/
-.agents/
+.agents/*
+!.agents/plugins/
 .env
 .env.*
 *.mp4
@@ -24,3 +25,7 @@ link-checker-report.txt
 
 # Local checkpoint patches
 .asph-wip/
+
+# Python bytecode
+__pycache__/
+*.pyc

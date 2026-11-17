@@ -1,9 +1,23 @@
 ---
 name: motion-director
-description: Use when designing motion concepts, animation systems, choreography, timing, easing, reduced-motion behavior, or deciding which motion stack to use for web UI, video, GIF, Rive, Lottie, GSAP, Motion, Remotion, or Three.js work.
+description: Use when designing motion concepts, animation systems, choreography, timing, easing, reduced-motion behavior, or deciding which motion stack to use for web UI, video, GIF, Rive, Lottie, GSAP, Motion, Remotion, or Three.js work. Best for one component, interaction or product UI surface and for turning audit findings into fixes. For a whole-site cinematic motion spec use site-motion-excellence-director; to review existing motion use web-motion-auditor.
 ---
 
 # Motion Director
+
+## When to use
+
+- Choosing a runtime (CSS, Motion, GSAP, Rive, Lottie, Remotion, Three.js) for a component, page section or asset.
+- Defining timing/easing/stagger tokens, interruption rules and the reduced-motion path.
+- Turning `web-motion-auditor` findings into concrete fixes.
+
+## When not to use
+
+- Whole-site choreography, scroll stories or premium launch specs: use `site-motion-excellence-director`.
+- Reviewing or scoring motion that already exists: use `web-motion-auditor`.
+- Rendered video: use `remotion-video-agent`; AI-generated footage: use `generative-media-director`.
+
+When implementing, load the bundled `gsap-*` skills for GSAP API details and `motion-design` for easing tables and choreography patterns.
 
 ## Workflow
 

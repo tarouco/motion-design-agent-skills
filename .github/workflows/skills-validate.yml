@@ -27,6 +27,11 @@ jobs:
         run: |
           python3 scripts/verify-skill-packages.py
           python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Verify plugin manifests, vendored skills, provenance and links
+        run: |
+          python3 scripts/sync-vendor-skills.py --check
+          python3 scripts/verify-repo.py
+          python3 scripts/build-plugin.py --out "$RUNNER_TEMP/plugin"
       - name: Validate SKILL.md frontmatter, manifests, and public-safety
         shell: python
         run: |
@@ -46,7 +51,7 @@ jobs:
                   errs.append(f"{skill}: name must be kebab-case, <=64 chars")
               if not desc or len(desc) > 1024:
                   errs.append(f"{skill}: description missing or >1024 chars")
-          for mf in [".claude-plugin/marketplace.json", ".claude-plugin/plugin.json", "skills-lock.json"]:
+          for mf in [".claude-plugin/marketplace.json", ".claude-plugin/plugin.json", "plugin.json", ".antigravity-plugin/plugin.json", ".agents/plugins/marketplace.json", "hooks/hooks.json", "vendor/vendor-lock.json", "skills-lock.json"]:
               p = root / mf
               if p.exists():
                   try: json.loads(p.read_text(encoding="utf-8"))

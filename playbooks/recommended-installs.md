@@ -48,27 +48,25 @@ npm i lottie-react
 
 ## Add Agent Skills
 
-Official Remotion docs currently recommend:
+The `motion-design-agent-skills` plugin already bundles the official GSAP skills (greensock/gsap-skills, MIT) and the LottieFiles `motion-design` skill (MIT), pinned in `vendor/vendor-lock.json`. Install the plugin once per agent; see [PLUGIN.md](../PLUGIN.md).
+
+The official Remotion skills are not redistributed (upstream ships no license file). Inside a Remotion project, the official docs recommend:
+
+```bash
+npx remotion skills add
+```
+
+Outside a Remotion project:
 
 ```bash
 npx skills add remotion-dev/skills
 ```
 
-Run this in the agent environment where the video work will happen. Then verify the installed path before relying on it in production.
+Run this in the agent environment where the video work will happen, or pass `--with-remotion` to `install.sh`. The pinned source revision is recorded in `skills-lock.json` (checked 2026-11-17: `skills/remotion-best-practices/SKILL.md`).
 
-Installed locally on 2026-06-18 for this repo and link posture refreshed on 2026-06-19:
+Other high-value third-party skill references:
 
-```text
-.agents/skills/remotion-best-practices
-```
-
-The installed skill is intentionally not committed to this public repo; keep third-party skill source pinned in `skills-lock.json` and reinstall from the official source when needed.
-
-Current high-value third-party skill references:
-
-- LottieFiles motion-design skill: https://github.com/LottieFiles/motion-design-skill
 - LottieFiles dotLottie web skill: https://github.com/LottieFiles/dotlottie-web/blob/main/SKILL.md
-- GSAP official skills: https://github.com/greensock/gsap-skills
 
 ## Add MCP Carefully
 
@@ -77,7 +75,7 @@ Recommended:
 - Figma MCP for design context and write-back: https://developers.figma.com/docs/figma-mcp-server/
 - Figma MCP catalog for client setup: https://www.figma.com/mcp-catalog/
 - Canva MCP for asset/design creation and collateral: https://www.canva.dev/docs/mcp/
-- Remotion MCP for Remotion-specific docs/context: https://www.remotion.dev/docs/ai/mcp
+- Remotion MCP: shut down on 2026-10-26; use the `/remotion-docs` skill from the official Remotion skills instead (https://www.remotion.dev/docs/ai/mcp).
 - Vercel connector for deploy/preview/log workflows.
 
 Security rule: install MCP servers from official vendors or audited source only. Review scopes, command execution behavior, and whether the tool can read secrets or write files.

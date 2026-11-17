@@ -1,0 +1,29 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "motion-design-agent-skills",
+  "displayName": "Motion Design Agent Skills",
+  "version": "2.0.0",
+  "description": "Routes motion work to the right skill: UI motion direction, site choreography, motion QA, Remotion video and generative media, with GSAP references.",
+  "logo": "assets/icon.png",
+  "suggestedPrompts": [
+    "Audit the animations on this page for reduced motion, jank and interruption",
+    "Write a motion spec for this landing page hero and pick the runtime",
+    "Turn this product flow into a 20 second Remotion video with captions"
+  ],
+  "author": {
+    "name": "tarouco",
+    "url": "https://github.com/tarouco"
+  },
+  "homepage": "https://github.com/tarouco/motion-design-agent-skills",
+  "repository": "https://github.com/tarouco/motion-design-agent-skills",
+  "license": "CC0-1.0",
+  "keywords": [
+    "motion",
+    "animation",
+    "remotion",
+    "gsap",
+    "lottie",
+    "video",
+    "design-qa"
+  ]
+}

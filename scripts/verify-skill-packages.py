@@ -3,6 +3,7 @@
 
 import argparse
 import io
+import json
 from pathlib import Path, PurePosixPath
 import re
 import stat
@@ -12,13 +13,18 @@ from urllib.parse import unquote, urlsplit
 import zipfile
 
 
-SKILLS = {
+FIRST_PARTY = {
     "generative-media-director",
+    "motion-design-orchestrator",
     "motion-director",
     "remotion-video-agent",
     "site-motion-excellence-director",
     "web-motion-auditor",
 }
+# Third-party skills vendored unmodified into skills/ (see vendor/vendor-lock.json).
+_LOCK = Path(__file__).resolve().parents[1] / "vendor" / "vendor-lock.json"
+VENDORED = {s for src in json.loads(_LOCK.read_text(encoding="utf-8"))["sources"] for s in src["skills"]} if _LOCK.is_file() else set()
+SKILLS = FIRST_PARTY | VENDORED
 
 # Bundles are release payloads; the existing repo documents remain canonical.
 BUNDLED_REFERENCES = {
@@ -155,7 +161,8 @@ def main():
     errors = validate_repository(args.root.resolve())
     if args.archives:
         errors.extend(validate_release_archives(args.root.resolve(), args.archives.resolve()))
-    print("\n".join(errors) if errors else "OK: five standalone skill payloads, four canonical references" + (", and six actual release archives" if args.archives else ""))
+    summary = f"OK: {len(SKILLS)} standalone skill payloads ({len(FIRST_PARTY)} first-party, {len(VENDORED)} vendored), four canonical references"
+    print("\n".join(errors) if errors else summary + (f", and {len(SKILLS) + 1} actual release archives" if args.archives else ""))
     return bool(errors)
 
 
