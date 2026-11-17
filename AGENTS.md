@@ -27,6 +27,16 @@ This repo is the public motion-agent discovery and authority layer for FrankX, S
 - Before publishing, scan for broken Markdown links, stale dates, placeholders, and private/internal paths.
 - If adding setup commands, verify they are current and make clear whether they are global, repo-local, or agent-environment-specific.
 
+## Plugin packaging
+
+This repository is also the `motion-design-agent-skills` plugin (marketplace `tarouco-motion`).
+
+- One name and version across `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `plugin.json` (Codex and portable hosts) and `.antigravity-plugin/plugin.json`.
+- `skills/motion-design-orchestrator` is the entry point; when a skill is added, renamed or re-scoped, update its routing table and `references/skill-catalog.md`, plus `hooks/session-context.md`, `rules/motion-design-routing.md` and `memory/motion-design-routing.md`.
+- Vendored skills (`gsap-*`, `motion-design`) are byte-pinned in `vendor/vendor-lock.json`; refresh with `python3 scripts/sync-vendor-skills.py`, never by hand.
+- Before publishing run `python3 scripts/verify-repo.py`, `python3 scripts/verify-skill-packages.py`, `python3 -m unittest discover -s tests -p 'test_*.py'`, `claude plugin validate .`, and `python3 scripts/build-plugin.py`.
+- When working on motion tasks inside this repo, use the plugin's own skills (start with `motion-design-orchestrator`).
+
 ## Design Taste Kernel
 
 For any site, app, landing page, dashboard, visual identity, brand, motion, media, social, or frontend task, apply the maintainer's Design Taste Kernel (design taste, web experience standard, motion taste rubric, multi-agent design council, visual QA gate) before handoff. Those documents live in the maintainer's private estate and are intentionally not referenced by path here.

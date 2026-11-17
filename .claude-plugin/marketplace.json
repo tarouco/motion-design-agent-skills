@@ -1,22 +1,25 @@
 {
-  "name": "frankx-motion",
-  "description": "Motion-design agent skills: web motion audit, motion direction, Remotion video, generative media, site motion systems.",
+  "name": "tarouco-motion",
+  "description": "Marketplace for the motion-design-agent-skills plugin: motion direction, site choreography, motion QA, Remotion video and generative media, routed by one orchestrator skill.",
   "owner": {
-    "name": "FrankX",
-    "url": "https://github.com/frankxai"
+    "name": "tarouco",
+    "url": "https://github.com/tarouco"
   },
   "plugins": [
     {
-      "name": "motion-design-studio",
+      "name": "motion-design-agent-skills",
       "source": "./",
-      "description": "Five skills: generative-media-director, motion-director, remotion-video-agent, site-motion-excellence-director, web-motion-auditor.",
+      "description": "Orchestrator plus five motion workflow skills and the official GSAP and LottieFiles references, packaged as one plugin.",
+      "version": "2.0.0",
+      "category": "design",
       "license": "CC0-1.0",
-      "homepage": "https://github.com/frankxai/awesome-motion-design-agent-skills",
+      "homepage": "https://github.com/tarouco/motion-design-agent-skills",
       "keywords": [
         "motion",
         "animation",
         "remotion",
         "gsap",
+        "lottie",
         "video",
         "design-qa"
       ]

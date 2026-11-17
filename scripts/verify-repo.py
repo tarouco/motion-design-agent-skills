@@ -19,6 +19,11 @@ for skill in sorted(root.glob("skills/*/SKILL.md")):
         errs.append(f"{skill.relative_to(root)}: name must be kebab-case, <=64 chars")
     if not desc or len(desc) > 1024:
         errs.append(f"{skill.relative_to(root)}: description missing or >1024 chars")
+    # Unquoted single-line YAML scalars break real YAML parsers on ": " or " #".
+    for key, value in re.findall(r"^(\w[\w-]*):[ \t]*(.+)$", m.group(1), re.M):
+        v = value.strip()
+        if v and v[0] not in "\"'>|" and (": " in v or " #" in v):
+            errs.append(f"{skill.relative_to(root)}: frontmatter '{key}' needs quoting (contains ': ' or ' #')")
 
 # 2. Validate JSON manifests
 for mf in [".claude-plugin/marketplace.json", ".claude-plugin/plugin.json", "skills-lock.json", ".github/repo-metadata.json"]:
@@ -36,6 +41,40 @@ for mf in [".claude-plugin/marketplace.json", ".claude-plugin/plugin.json", "ski
                     errs.append(f"{mf}: socialPreviewImage {sp} does not exist")
         except Exception as e:
             errs.append(f"{mf}: invalid JSON ({e})")
+
+# 2b. Plugin manifests for Claude, Codex, Antigravity and Hermes must agree on name and version
+PLUGIN_MANIFESTS = [".claude-plugin/plugin.json", "plugin.json", ".antigravity-plugin/plugin.json"]
+identities = {}
+for mf in PLUGIN_MANIFESTS + [".claude-plugin/marketplace.json", ".agents/plugins/marketplace.json", "hooks/hooks.json", "vendor/vendor-lock.json"]:
+    p = root / mf
+    if not p.exists():
+        errs.append(f"{mf}: missing required manifest")
+        continue
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as e:
+        errs.append(f"{mf}: invalid JSON ({e})")
+        continue
+    if mf in PLUGIN_MANIFESTS:
+        identities[mf] = (data.get("name"), data.get("version"))
+        for key in ("icon", "logo"):
+            if key in data and not (root / data[key]).is_file():
+                errs.append(f"{mf}: {key} {data[key]} does not exist")
+    elif mf.endswith("marketplace.json"):
+        entries = {e.get("name"): e for e in data.get("plugins", [])}
+        if "motion-design-agent-skills" not in entries:
+            errs.append(f"{mf}: no motion-design-agent-skills entry")
+        elif "version" in entries["motion-design-agent-skills"]:
+            identities[mf] = ("motion-design-agent-skills", entries["motion-design-agent-skills"]["version"])
+if len(set(identities.values())) > 1:
+    errs.append(f"plugin manifests disagree on name/version: {identities}")
+
+# 2c. Vendored third-party skills match their pinned hashes and keep their licenses
+import importlib.util
+_spec = importlib.util.spec_from_file_location("sync_vendor_skills", root / "scripts" / "sync-vendor-skills.py")
+_vendor = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_vendor)
+errs.extend(_vendor.check(json.loads((root / "vendor" / "vendor-lock.json").read_text(encoding="utf-8"))))
 
 # 3. Validate visual asset provenance sidecars & SHA-256 digests
 for asset in sorted((root / "assets").iterdir()):
@@ -79,4 +118,4 @@ for f in sorted(root.rglob("*")):
 if errs:
     print("\n".join(errs))
     sys.exit(1)
-print("OK: skills, manifests, asset provenance sidecars, internal links, and public-safety verified")
+print("OK: skills, plugin manifests, vendored skills, asset provenance sidecars, internal links, and public-safety verified")

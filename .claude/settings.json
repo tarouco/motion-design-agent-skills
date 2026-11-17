@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "tarouco-motion": {
+      "source": {
+        "source": "github",
+        "repo": "tarouco/motion-design-agent-skills"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "motion-design-agent-skills@tarouco-motion": true
+  }
+}

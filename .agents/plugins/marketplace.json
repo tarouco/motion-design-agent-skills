@@ -1,0 +1,21 @@
+{
+  "name": "tarouco-motion",
+  "interface": {
+    "displayName": "Tarouco Motion"
+  },
+  "plugins": [
+    {
+      "name": "motion-design-agent-skills",
+      "source": {
+        "source": "url",
+        "url": "https://github.com/tarouco/motion-design-agent-skills.git",
+        "ref": "main"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,13 +1,16 @@
 {
-  "name": "awesome-motion-design-agent-skills",
+  "name": "motion-design-agent-skills",
   "type": "awesome-list",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "ecosystem": "FrankX GenCreator",
   "capabilities": [
     "markdown-lint",
     "link-check",
     "skills-validate",
     "skills-release",
-    "claude-plugin-marketplace"
+    "claude-plugin-marketplace",
+    "plugin-bundles",
+    "vendored-skills-lock",
+    "multi-host-manifests"
   ]
 }

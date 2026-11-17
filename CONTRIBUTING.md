@@ -43,7 +43,9 @@ Each skill lives in `skills/<skill-name>/SKILL.md` and follows the open [`agents
    - **Reduced-motion requirement (`prefers-reduced-motion: reduce`)** — every motion skill must specify the static or reduced-motion path, not merely disable CSS transitions.
    - **Verification checklist** (frame budget, mobile layout, accessibility).
 3. **Manifest sync:**
-   - If adding a new first-party skill folder under `skills/`, update `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `README.md`, and `GETTING_STARTED.md`.
+   - If adding a new first-party skill folder under `skills/`, add it to `FIRST_PARTY` in `scripts/verify-skill-packages.py`, route it from `skills/motion-design-orchestrator` (SKILL.md and `references/skill-catalog.md`), and update `README.md`, `GETTING_STARTED.md`, `PLUGIN.md` and `docs/plugin-guide.pt-BR.md`.
+   - The plugin ships one name and version across `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `plugin.json` and `.antigravity-plugin/plugin.json`; bump them together. `scripts/verify-repo.py` rejects drift.
+   - Third-party skills are vendored only with an explicit MIT/Apache-2.0 license file: add the source to `vendor/vendor-lock.json`, run `python3 scripts/sync-vendor-skills.py`, and list it in `THIRD_PARTY_NOTICES.md` and `skills-lock.json`.
 
 ---
 

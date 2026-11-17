@@ -1,0 +1,18 @@
+{
+  "$schema": "https://frankx.ai/schemas/vis-provenance-sidecar.schema.json",
+  "asset_id": "icon-png",
+  "image_path": "assets/icon.png",
+  "sidecar_path": "assets/icon.png.vis.provenance.json",
+  "source_method": "rendered-from-svg",
+  "provider": "motion-design-agent-skills maintainers",
+  "model": "chromium-playwright-render-of-assets/icon.svg",
+  "sha256": "2feb35655319a922753c9ad62cb1bfa7281a477802f77b7ba551ea206523201e",
+  "alt": "Motion Design Agent Skills plugin icon: easing curve with two keyframes above a timeline scrubber",
+  "viewport": {
+    "width": 1024,
+    "height": 1024
+  },
+  "rights": "CC0-1.0 public domain dedication (first-party repository asset, original vector drawing, no third-party marks)",
+  "review": "Verified repository asset provenance and SHA-256 digest; plugin icon for Claude, Codex and Antigravity listings",
+  "timestamp": "2026-11-17T11:24:00Z"
+}

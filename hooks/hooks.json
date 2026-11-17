@@ -1,0 +1,17 @@
+{
+  "description": "Loads the motion-design-agent-skills routing note at session start so Claude knows when to call the plugin.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PLUGIN_ROOT}/hooks/session-context.md\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

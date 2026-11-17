@@ -1,9 +1,20 @@
 ---
 name: web-motion-auditor
-description: Use when reviewing web animations, UI transitions, scroll effects, hover states, loading states, GIF/video captures, reduced-motion support, animation performance, or motion polish in HTML, React, Next.js, or Vercel apps.
+description: Use when reviewing web animations, UI transitions, scroll effects, hover states, loading states, GIF/video captures, reduced-motion support, animation performance, or motion polish in HTML, React, Next.js, or Vercel apps, including before/after checks of a motion patch. Review workflow only; route new motion design to motion-director and whole-site specs to site-motion-excellence-director.
 ---
 
 # Web Motion Auditor
+
+## When to use
+
+- Auditing or debugging existing motion: jank, slow or blocking transitions, missing `prefers-reduced-motion`, hover-only actions, broken interruption.
+- Baseline capture before a site motion rollout, and verification after a patch.
+- Scoring motion with the bundled rubric, citing evidence.
+
+## When not to use
+
+- Designing new motion or picking a runtime: use `motion-director`.
+- Writing a site-wide motion spec: use `site-motion-excellence-director`.
 
 ## Workflow
 

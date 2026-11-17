@@ -1,9 +1,19 @@
 ---
 name: generative-media-director
-description: Use when planning, prompting, generating, editing, routing, finishing, or QAing AI-created images, GIFs, videos, style frames, image-to-video clips, social ads, cinematic brand assets, motion studies, or multi-provider generative media workflows using Codex imagegen, GPT Image, Sora, Grok Imagine, Veo, Luma, Runway, Remotion, Playwright, ffmpeg, Figma, Canva, or Vercel.
+description: Use when planning, prompting, generating, editing, routing, finishing, or QAing AI-created images, GIFs, videos, style frames, image-to-video clips, social ads, cinematic brand assets, motion studies, or multi-provider generative media workflows using Codex imagegen, GPT Image, Sora, Grok Imagine, Veo, Luma, Runway, Remotion, Playwright, ffmpeg, Figma, Canva, or Vercel. Owns briefs, prompts, provider routing, authorization and provenance; hands exact typography and finishing to remotion-video-agent.
 ---
 
 # Generative Media Director
+
+## When to use
+
+- Any job where pixels or footage come from an image/video generation tool: style frames, posters, image-to-video, generated social ads, edits of generated footage.
+- Choosing a provider from the tools actually available, writing still-frame and video prompts, and keeping provenance.
+
+## When not to use
+
+- Exact text, UI or data-driven scenes: use `remotion-video-agent`.
+- Proof of real product motion: capture the real UI (see `web-motion-auditor`), do not generate it.
 
 ## Workflow
 

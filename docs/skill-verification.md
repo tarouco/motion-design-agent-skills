@@ -17,7 +17,7 @@ python scripts/verify-skill-packages.py
 python -m unittest discover -s tests -p 'test_*.py' -v
 ```
 
-The package check validates all five skill entrypoints, verifies four bundled
+The package check validates all fifteen skill entrypoints (six first-party, nine vendored), verifies four bundled
 references against their canonical repo sources, creates each individual ZIP in
 memory, extracts it into an isolated temporary folder, and checks its local links.
 The temporary files are removed after the check. Nothing is installed into an
@@ -38,7 +38,7 @@ Each skill can then be installed or uploaded alone without needing the repo root
 
 ## Check the actual release ZIPs
 
-After packaging the five individual archives and `all-skills.zip` into `dist/`, run:
+After packaging one archive per skill and `all-skills.zip` into `dist/`, run:
 
 ```bash
 python scripts/verify-skill-packages.py --archives dist
